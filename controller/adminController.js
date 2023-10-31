@@ -9,11 +9,14 @@ const login = (req,res) => {
 
 const register = (req,res) => {
     return res.render('register')
-}
+} 
 
 const admindashboard = (req,res) => {
-    return res.render('admin/admindashboard')
-    
+    return res.render('admin/admindashboard'); 
+}
+
+const userdashboard = (req,res) => {
+    return res.render('user/userdashboard'); 
 }
 
 const registerData = async (req,res) => {
@@ -39,11 +42,16 @@ const registerData = async (req,res) => {
     catch(error){
         console.log(error);
         return false;
-    }
+    }   
 }
 
 const loginData = (req,res) => {
-    return res.redirect('/admindashboard');
+    if(res.locals.users.role == 'admin'){
+        return res.redirect('admindashboard');
+    }
+    else{
+        return res.redirect('userdashboard');      
+    }
 }
 
 const logout = async (req,res) => {
@@ -70,6 +78,7 @@ module.exports = {
     login,
     register,
     admindashboard,  
+    userdashboard,
     registerData,
     loginData,
     logout,

@@ -7,6 +7,7 @@ const adminConntroller = require('../controller/adminController');
 Routes.get('/',adminConntroller.login);
 Routes.get('/register',adminConntroller.register);
 Routes.get('/admindashboard',passport.checkAuthentication,adminConntroller.admindashboard);
+Routes.get('/userdashboard',passport.checkAuthentication,adminConntroller.userdashboard);
 Routes.post('/registerData',adminConntroller.registerData);
 Routes.post('/loginData',passport.authenticate('local',{failureRedirect : '/'}),adminConntroller.loginData);
 Routes.get('/logout',adminConntroller.logout);

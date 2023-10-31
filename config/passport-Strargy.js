@@ -11,13 +11,14 @@ passport.use(new passportLocal({
             console.log("Enter valid password");
             return done(null,false);
         }
-        else if(user.role == 'admin'){
-            return done(null,user);
-        }
-        else {
-            console.log("check role");
-            return done(null,false);
-        }
+        return done(null,user);
+        // else if(user.role == 'admin'){
+            
+        // }
+        // else {
+        //     console.log("check role");
+        //     return done(null,false);
+        // }
     }
     catch(error){
         console.log(error);
