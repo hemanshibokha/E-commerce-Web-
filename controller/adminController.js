@@ -1,4 +1,5 @@
 const userSchema = require('../models/userSchema');
+const categorySchema = require('../models/categorySchema');
 
 const login = (req,res) => {
     if(res.locals.users){
@@ -46,11 +47,16 @@ const registerData = async (req,res) => {
 }
 
 const loginData = (req,res) => {
-    if(res.locals.users.role == 'admin'){
-        return res.redirect('admindashboard');
+    if(req.isAuthenticated()){
+        if(req.user.role == 'admin'){
+            return res.redirect('admindashboard');
+        }
+        else{
+            return res.redirect('userdashboard');      
+        }
     }
     else{
-        return res.redirect('userdashboard');      
+        return res.redirect('/');
     }
 }
 
@@ -74,6 +80,43 @@ const myprofile = (req,res) => {
     return res.render('myprofile')
 }
 
+const addcategory = (req,res) => {
+    return res.render('addcategory');
+}
+
+const shop = async (req,res) => {
+    try{
+        let viewData = await categorySchema.find({});
+        return res.render('shop',{
+            viewData
+        });
+    }
+    catch(error){
+        console.log(error);
+        return false;
+    }
+}
+
+const addCategoryData = async (req,res) => {
+    try{
+        let categoryInsert = await categorySchema.create({
+            category : req.body.category
+        })
+        if(categoryInsert){
+            console.log("Category Insert");
+            return res.redirect('back');
+        }
+        else{
+            console.log("Category Not Insert");
+            return res.redirect('back');
+        }
+    }
+    catch(error){
+        console.log(error);
+        return false;
+    }
+}
+
 module.exports = {
     login,
     register,
@@ -82,5 +125,8 @@ module.exports = {
     registerData,
     loginData,
     logout,
-    myprofile
+    myprofile,
+    addcategory,
+    shop,
+    addCategoryData
 }   

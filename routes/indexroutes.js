@@ -12,6 +12,8 @@ Routes.post('/registerData',adminConntroller.registerData);
 Routes.post('/loginData',passport.authenticate('local',{failureRedirect : '/'}),adminConntroller.loginData);
 Routes.get('/logout',adminConntroller.logout);
 Routes.get('/myprofile',adminConntroller.myprofile);
-
+Routes.get('/addcategory',adminConntroller.addcategory);
+Routes.get('/shop',adminConntroller.shop);
+Routes.post('/addCategoryData',adminConntroller.addCategoryData);
 
 module.exports = Routes; 

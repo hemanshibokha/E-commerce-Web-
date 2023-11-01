@@ -6,7 +6,6 @@ passport.use(new passportLocal({
 }, async (email,password,done)=>{
     try{
         let user = await userSchema.findOne({email : email});
-        console.log(user);
         if(!user || user.password != password){
             console.log("Enter valid password");
             return done(null,false);
