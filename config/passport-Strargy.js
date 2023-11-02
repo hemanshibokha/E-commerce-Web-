@@ -52,4 +52,6 @@ passport.setAuthentication = (req,res,next) => {
     return next();
 }   
 
-module.exports = passport;
+module.exports = {
+    passport,
+};

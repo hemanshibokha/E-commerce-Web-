@@ -10,10 +10,12 @@ Routes.get('/admindashboard',passport.checkAuthentication,adminConntroller.admin
 Routes.get('/userdashboard',passport.checkAuthentication,adminConntroller.userdashboard);
 Routes.post('/registerData',adminConntroller.registerData);
 Routes.post('/loginData',passport.authenticate('local',{failureRedirect : '/'}),adminConntroller.loginData);
-Routes.get('/logout',adminConntroller.logout);
+Routes.get('/logout',adminConntroller.logout); 
 Routes.get('/myprofile',adminConntroller.myprofile);
 Routes.get('/addcategory',adminConntroller.addcategory);
 Routes.get('/shop',adminConntroller.shop);
-Routes.post('/addCategoryData',adminConntroller.addCategoryData);
+Routes.post('/addCategoryData',adminConntroller.addCategoryData); 
+Routes.get('/addproduct',adminConntroller.addproduct);
+Routes.post('/addproductData',adminConntroller.addproductData);
 
 module.exports = Routes; 

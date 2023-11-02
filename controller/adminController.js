@@ -1,5 +1,6 @@
 const userSchema = require('../models/userSchema');
 const categorySchema = require('../models/categorySchema');
+const productSchema = require('../models/productSchema');
 
 const login = (req,res) => {
     if(res.locals.users){
@@ -71,7 +72,7 @@ const logout = async (req,res) => {
         })
     }
     catch(error){
-        console.log(error);
+        console.log(error); 
         return false;
     }
 }
@@ -86,10 +87,12 @@ const addcategory = (req,res) => {
 
 const shop = async (req,res) => {
     try{
+        let user = res.locals.users;
         let viewData = await categorySchema.find({});
         return res.render('shop',{
-            viewData
-        });
+            viewData,
+            user
+        }); 
     }
     catch(error){
         console.log(error);
@@ -117,6 +120,47 @@ const addCategoryData = async (req,res) => {
     }
 }
 
+const addproduct = async (req,res) => {
+    try{
+        let productRecord = await categorySchema.find({});
+        if(productRecord){
+            return res.render('addproduct',{
+                productRecord
+            });
+        }
+        else{
+            console.log('category not shown');
+        }
+        
+    }
+    catch(error){
+        console.log(error);
+        return false;
+    }
+}
+
+const addproductData = async (req,res) => {
+    try{
+        const {category,product} = req.body;
+        let addproduct = await productSchema.create({
+            categoryId : category,
+            product : product 
+        })
+        if(addproduct){
+            console.log("product Insert");
+            return res.redirect('back');
+        }
+        else{
+            console.log("product Not Insert");
+            return res.redirect('back');
+        }
+    }
+    catch(error){
+        console.log(error);
+        return false;
+    }
+}
+ 
 module.exports = {
     login,
     register,
@@ -128,5 +172,7 @@ module.exports = {
     myprofile,
     addcategory,
     shop,
-    addCategoryData
+    addCategoryData,
+    addproduct,
+    addproductData
 }   
