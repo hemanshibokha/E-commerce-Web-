@@ -89,9 +89,11 @@ const shop = async (req,res) => {
     try{
         let user = res.locals.users;
         let viewData = await categorySchema.find({});
+        let productData = await productSchema.find({});
         return res.render('shop',{
             viewData,
-            user
+            user,
+            productData
         }); 
     }
     catch(error){

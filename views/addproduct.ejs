@@ -35,7 +35,7 @@
                                 <select name="category">
                                     <option>---Select Category---</option>
                                     <% productRecord.map((v)=>{ %>
-                                        <option value=""><%= v.category %></option>
+                                        <option value="<%=v.id  %>"><%= v.category %></option>
                                     <% }) %>              
                                   </select>
 							</div>
