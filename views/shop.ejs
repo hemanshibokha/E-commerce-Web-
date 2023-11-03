@@ -101,7 +101,7 @@
                 <form action="#">
                   <ul>
                     <% viewData.map((v)=>{ %>
-                      <li class="filter-list"><input class="pixel-radio" type="radio" name="brand"
+                      <li class="filter-list"><input  onchange="categoryFilter(`<%= v.id %>`)" class="pixel-radio" type="radio" name="brand"
                          value="<%= v.category %>">
                         <%= v.category %>
                       </li>
@@ -122,11 +122,14 @@
               <div class="head">Products</div>
               <form action="#">
                 <ul>
-                  <% productData.map((v)=>{ %>
-                        <li class="filter-list"><input class="pixel-radio" type="radio" name="brand">
-                          <%= v.product %>
-                        </li>
-                  <% }) %>
+                    <% productData.map((val) => { %>
+                      <li class="filter-list"><input class="pixel-radio" type="radio" name="brand">
+                        <%= val.product  %>
+                      </li>
+                   <% }) %>
+                </ul>
+                <ul id="categoryfilter">
+                  
                 </ul>
               </form>
             </div>
@@ -476,6 +479,29 @@
   <script src="vendors/jquery.ajaxchimp.min.js"></script>
   <script src="vendors/mail-script.js"></script>
   <script src="js/main.js"></script>
+  <script type="text/javascript">
+      
+      const categoryFilter = (cat) => {
+          $.ajax({
+              method : 'GET',
+              url : `http://localhost:8080/shop/${cat}`,
+              success : function(res){
+                let tbl = ""; 
+                 res.map((val)=>{
+                    tbl +=`
+                      <li class="filter-list"><input class="pixel-radio" type="radio" name="brand">
+                          ${val.product}
+                        </li>
+                        `
+                 })
+
+                 document.getElementById('categoryfilter').innerHTML = tbl;
+              }
+          })
+          
+      }
+
+  </script>
 </body>
 
 </html>

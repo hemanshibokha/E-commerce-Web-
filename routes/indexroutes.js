@@ -14,6 +14,7 @@ Routes.get('/logout',adminConntroller.logout);
 Routes.get('/myprofile',adminConntroller.myprofile);
 Routes.get('/addcategory',adminConntroller.addcategory);
 Routes.get('/shop',adminConntroller.shop);
+Routes.get('/shop/:category',adminConntroller.shopfilter)
 Routes.post('/addCategoryData',adminConntroller.addCategoryData); 
 Routes.get('/addproduct',adminConntroller.addproduct);
 Routes.post('/addproductData',adminConntroller.addproductData);

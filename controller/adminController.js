@@ -102,6 +102,23 @@ const shop = async (req,res) => {
     }
 }
 
+const shopfilter = async(req,res) => {
+    try{
+        let category = req.params.category;
+        let categoryfilter = await productSchema.find({categoryId : category});
+        if(categoryfilter){
+            return res.json(categoryfilter);
+        }else{
+            return res.json({messege : "Filter not Found"})
+        }
+
+    }catch(err){
+        console.log(err);
+        return false;
+    }
+    
+}
+
 const addCategoryData = async (req,res) => {
     try{
         let categoryInsert = await categorySchema.create({
@@ -176,5 +193,6 @@ module.exports = {
     shop,
     addCategoryData,
     addproduct,
-    addproductData
+    addproductData,
+    shopfilter
 }   
