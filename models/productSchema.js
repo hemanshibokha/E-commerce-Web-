@@ -4,7 +4,35 @@ const productSchema = mongoose.Schema({
         type : mongoose.Schema.Types.ObjectId,
         ref : 'category'
     },
-    product : {
+    image : {
+        type : String,
+        required : true
+    },
+    name : {
+        type : String,
+        required : true
+    },
+    price : {
+        type : String,
+        required : true
+    },
+    color : {
+        type : String,
+        required : true
+    },
+    description : {
+        type : String,
+        required : true
+    },
+    qty : {
+        type : String,
+        required : true
+    },
+    origin : {
+        type : String,
+        required : true
+    },
+    delivery : {
         type : String,
         required : true
     }

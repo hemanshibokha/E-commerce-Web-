@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Aroma Shop - Login</title>
-	<link rel="icon" href="img/Fevicon.png" type="image/png">
+  <link rel="icon" href="img/Fevicon.png" type="image/png">
   <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
-	<link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
-	<link rel="stylesheet" href="vendors/linericon/style.css">
+  <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="vendors/linericon/style.css">
   <link rel="stylesheet" href="vendors/owl-carousel/owl.theme.default.min.css">
   <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
   <link rel="stylesheet" href="vendors/nice-select/nice-select.css">
@@ -17,41 +18,65 @@
 
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-	<!--================ End Header Menu Area =================-->
-  
-  <!-- ================ start banner area ================= -->	
-	<!-- ================ end banner area ================= -->
-  
+  <!--================ End Header Menu Area =================-->
+
+  <!-- ================ start banner area ================= -->
+  <!-- ================ end banner area ================= -->
+
   <!--================Login Box Area =================-->
-	<section class="login_box_area pt-5">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="login_form_inner">
-						<h3>Add Product</h3>
-						<form class="row login_form" action="/addproductData" method="post" id="contactForm" >
-							<div class="col-md-12 form-group">
-                                <select name="category">
-                                    <option>---Select Category---</option>
-                                    <% productRecord.map((v)=>{ %>
-                                        <option value="<%=v.id  %>"><%= v.category %></option>
-                                    <% }) %>              
-                                  </select>
-							</div>
-                            <div class="col-md-12 pt-4 form-group">
-								<input type="text" class="form-control" name="product" placeholder="Add Product">
-							</div>
-							<div class="col-md-12 form-group">
-								<button type="submit" class="btn btn-primary">Submit</button>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--================End Login Box Area =================-->
+  <section class="login_box_area pt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="login_form_inner">
+            <h3>Add Product</h3>
+            <form class="row login_form" action="/addproductData" enctype="multipart/form-data" method="post">
+              <div class="col-md-12 form-group">
+                <select name="category">
+                  <option>---Select Category---</option>
+                  <% productRecord.map((v)=>{ %>
+                    <option value="<%=v.id  %>">
+                      <%= v.category %>
+                    </option>
+                    <% }) %>
+                </select>
+              </div>
+              <div class="col-md-12 pt-4 form-group">
+                <input type="file" class="form-control" name="image">
+              </div>
+              <div class="col-md-12 pt-4 form-group">
+                <input type="text" class="form-control" name="name" placeholder="Add Product Name">
+              </div>
+              <div class="col-md-12 pt-4 form-group">
+                <input type="text" class="form-control" name="price" placeholder="Product Price">
+              </div>
+              <div class="col-md-12 pt-4 form-group">
+                <input type="text" class="form-control" name="color" placeholder="Product Color">
+              </div>
+              <div class="col-md-12 pt-4 form-group">
+                <input type="text" class="form-control" name="description" placeholder="Product Description">
+              </div>
+              <div class="col-md-12 pt-4 form-group">
+                <input type="text" class="form-control" name="qty" placeholder="Net Quantity">
+              </div>
+              <div class="col-md-12 pt-4 form-group">
+                <input type="text" class="form-control" name="origin" placeholder="Country of Origin">
+              </div>
+              <div class="col-md-12 pt-4 form-group">
+                <input type="text" class="form-control" name="delivery" placeholder="Delivery">
+              </div>
+              <div class="col-md-12 form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--================End Login Box Area =================-->
 
 
 
@@ -65,4 +90,5 @@
   <script src="vendors/mail-script.js"></script>
   <script src="js/main.js"></script>
 </body>
+
 </html>

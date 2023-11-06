@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +14,6 @@
   <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
   <link rel="stylesheet" href="vendors/nice-select/nice-select.css">
   <link rel="stylesheet" href="vendors/nouislider/nouislider.min.css">
-
   <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -55,10 +53,10 @@
                       <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                         aria-haspopup="true" aria-expanded="false">Pages</a>
                     </li>
-                    <% if(user.role == 'admin'){ %>
+                    <% if(user.role=='admin' ){ %>
                       <li class="nav-item"><a class="nav-link" href="/addcategory">Add Category</a></li>
                       <li class="nav-item"><a class="nav-link" href="/addproduct">Add Product</a></li>
-                    <% } %>
+                      <% } %>
             </ul>
             <ul class="nav-shop">
               <li class="nav-item"><button><i class="ti-search"></i></button></li>
@@ -101,8 +99,8 @@
                 <form action="#">
                   <ul>
                     <% viewData.map((v)=>{ %>
-                      <li class="filter-list"><input  onchange="categoryFilter(`<%= v.id %>`)" class="pixel-radio" type="radio" name="brand"
-                         value="<%= v.category %>">
+                      <li class="filter-list"><input class="pixel-radio"
+                          type="radio" name="brand" value="<%= v.category %>">
                         <%= v.category %>
                       </li>
                       <!-- <li class="nav-item">
@@ -110,7 +108,6 @@
                         <a href=""><i class="ti-pencil"></i></a>
                       </li> -->
                       <% }) %>
-                      
                   </ul>
                 </form>
               </li>
@@ -122,14 +119,13 @@
               <div class="head">Products</div>
               <form action="#">
                 <ul>
-                    <% productData.map((val) => { %>
-                      <li class="filter-list"><input class="pixel-radio" type="radio" name="brand">
-                        <%= val.product  %>
-                      </li>
-                   <% }) %>
+                  <% productData.map((val)=> { %>
+                    <li class="filter-list"><input class="pixel-radio" type="radio" name="brand">
+                      <%= val.product %>
+                    </li>
+                    <% }) %>
                 </ul>
                 <ul id="categoryfilter">
-                  
                 </ul>
               </form>
             </div>
@@ -477,31 +473,9 @@
   <script src="vendors/nice-select/jquery.nice-select.min.js"></script>
   <script src="vendors/nouislider/nouislider.min.js"></script>
   <script src="vendors/jquery.ajaxchimp.min.js"></script>
-  <script src="vendors/mail-script.js"></script>
+  <script src="vendors/mai=l-script.js"></script>
   <script src="js/main.js"></script>
-  <script type="text/javascript">
-      
-      const categoryFilter = (cat) => {
-          $.ajax({
-              method : 'GET',
-              url : `http://localhost:8080/shop/${cat}`,
-              success : function(res){
-                let tbl = ""; 
-                 res.map((val)=>{
-                    tbl +=`
-                      <li class="filter-list"><input class="pixel-radio" type="radio" name="brand">
-                          ${val.product}
-                        </li>
-                        `
-                 })
 
-                 document.getElementById('categoryfilter').innerHTML = tbl;
-              }
-          })
-          
-      }
-
-  </script>
 </body>
 
 </html>

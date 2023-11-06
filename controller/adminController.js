@@ -1,6 +1,7 @@
 const userSchema = require('../models/userSchema');
 const categorySchema = require('../models/categorySchema');
 const productSchema = require('../models/productSchema');
+const path = require('path');
 
 const login = (req,res) => {
     if(res.locals.users){
@@ -102,23 +103,6 @@ const shop = async (req,res) => {
     }
 }
 
-const shopfilter = async(req,res) => {
-    try{
-        let category = req.params.category;
-        let categoryfilter = await productSchema.find({categoryId : category});
-        if(categoryfilter){
-            return res.json(categoryfilter);
-        }else{
-            return res.json({messege : "Filter not Found"})
-        }
-
-    }catch(err){
-        console.log(err);
-        return false;
-    }
-    
-}
-
 const addCategoryData = async (req,res) => {
     try{
         let categoryInsert = await categorySchema.create({
@@ -160,10 +144,22 @@ const addproduct = async (req,res) => {
 
 const addproductData = async (req,res) => {
     try{
-        const {category,product} = req.body;
+        const {category,name,price,color,description,qty,origin,delivery} = req.body;
+        let image = '';
+        if (req.file) {
+            image = req.file.path;
+        }
+        console.log(image);
         let addproduct = await productSchema.create({
+            image : image,
             categoryId : category,
-            product : product 
+            name : name,
+            price : price,
+            color : color,
+            description : description,
+            qty : qty,
+            origin : origin,
+            delivery : delivery
         })
         if(addproduct){
             console.log("product Insert");
@@ -193,6 +189,5 @@ module.exports = {
     shop,
     addCategoryData,
     addproduct,
-    addproductData,
-    shopfilter
-}   
+    addproductData
+}    
